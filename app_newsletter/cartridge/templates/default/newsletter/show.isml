@@ -1,0 +1,46 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="newsletter/layout">
+    <isinclude template="util/modules"/>
+
+	<h3>${Resource.msg('title', 'newsletter', '')} - ${Resource.msg('showSubscription', 'newsletter', '')}</h3>
+
+	<isif condition="${pdict.SubscriptionsCount > 0}">
+		<form method="post" class="form-horizontal" action="${pdict.RemoveSubscriptionsURL}" id="update-subscriptions-form">
+			<table class="subscribed-clients-table">
+				<thead>
+					<th>${Resource.msg('sequenceNumber', 'newsletter', '')}</th>
+					<th>${Resource.msg('email', 'newsletter', '')}</th>
+					<th>${Resource.msg('firstName', 'newsletter', '')}</th>
+					<th>${Resource.msg('lastName', 'newsletter', '')}</th>
+					<th>${Resource.msg('gender', 'newsletter', '')}</th>
+					<th>${Resource.msg('dateOfBirth', 'newsletter', '')}</th>
+					<th>${Resource.msg('country', 'newsletter', '')}</th>
+					<th>${Resource.msg('delete', 'newsletter', '')}</th>
+				</thead>
+	
+				<isloop items="${pdict.Subscriptions}" var="subscription" status="state">
+				<tbody>
+					<td>${state.count}</td>
+					<td>${subscription.custom.emailAddress}</td>
+					<td>${subscription.custom.firstName}</td>
+					<td>${subscription.custom.lastName}</td>
+					<td>${subscription.custom.gender}</td>
+					<td>${subscription.custom.dateOfBirth}</td>
+					<td>${subscription.custom.country}</td>
+					<td><input type="checkbox" name="selected[]" id="selected" value="${subscription.UUID}" /></td>
+				</tbody>
+				</isloop>
+			</table>
+
+			<input type="hidden" name="${dw.web.CSRFProtection.getTokenName()}" value="${dw.web.CSRFProtection.generateToken()}" />
+
+			<button class="remove-button" type="submit" name="remove" value="${Resource.msg('global.remove','locale',null)}">
+				${Resource.msg('remove', 'newsletter', '')}
+			</button>
+		</form>
+		<iselse>
+
+		<div class="alert alert-info">${Resource.msg('noClients', 'newsletter', '')}</div>
+	</isif>
+
+</isdecorate>

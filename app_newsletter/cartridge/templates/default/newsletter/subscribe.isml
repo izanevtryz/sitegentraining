@@ -1,0 +1,36 @@
+<!--- TEMPLATENAME: subscribe.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="newsletter/layout">
+    <isinclude template="util/modules"/>
+
+	<h3>${Resource.msg('title', 'newsletter', '')} - ${Resource.msg('newSubscription', 'newsletter', '')}</h3>
+
+	<isif condition="${pdict.ErrorCode != null}">		
+		<isif condition="${pdict.ErrorCode == 'email'}">
+			<div class="alert alert-danger">${Resource.msg('newSubscription', 'newsletter', '')}</div>
+			<iselseif condition="${pdict.ErrorCode == 'invalid'}">
+			<div class="alert alert-danger">${Resource.msg('formNotValid', 'newsletter', '')}</div>
+			<iselseif condition="${pdict.ErrorCode == 'unknown'}">
+			<div class="alert alert-danger">${Resource.msg('unknownErrorOccurred', 'newsletter', '')}</div>
+			<iselse>
+		</isif>
+	</isif>
+	<form action="${URLUtils.continueURL()}" method="post" name="subscribeForm" id="subscribeForm">
+		<isinputfield formfield="${pdict.CurrentForms.subscribe.firstname}" type="input" />
+		<isinputfield formfield="${pdict.CurrentForms.subscribe.lastname}" type="input" />
+		<isinputfield formfield="${pdict.CurrentForms.subscribe.emailAddress}" type="input" />
+		<isinputfield formfield="${pdict.CurrentForms.subscribe.gender}" type="select" />
+		<isinputfield formfield="${pdict.CurrentForms.subscribe.country}" type="select" />
+
+		<fieldset id="birthday">
+			<span>Birthday</span>
+			<isinputfield formfield="${pdict.CurrentForms.subscribe.birthday.year}" type="select" />
+			<isinputfield formfield="${pdict.CurrentForms.subscribe.birthday.month}" type="select" />
+			<isinputfield formfield="${pdict.CurrentForms.subscribe.birthday.day}" type="select" />
+		</fieldset>
+
+		<input type="hidden" name="${dw.web.CSRFProtection.getTokenName()}" value="${dw.web.CSRFProtection.generateToken()}" />
+
+		<input type="submit" value="${Resource.msg('global.submit', 'locale', null)}" name="${pdict.CurrentForms.subscribe.subscribe.htmlName}" />
+	</form>
+</isdecorate>

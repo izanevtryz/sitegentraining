@@ -1,0 +1,9 @@
+<!--- TEMPLATENAME: subscribeSuccess.isml --->
+
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="newsletter/layout">
+	<h3>Newsletter - Success</h3>
+
+	<div class="alert alert-success">${Resource.msg('subscriptionSuccess', 'newsletter', '')}</div>
+
+</isdecorate>

@@ -1,0 +1,48 @@
+{
+	"step-types": {
+		"script-module-step": [
+			{
+				"@type-id": "custom.ExportNewsletterSubscriptions",
+				"module": "bm_newsletter/cartridge/scripts/job/exportSubscriptions.js",
+				"function": "execute",
+				"parameters": {
+				    "parameters": [
+				    	{
+					        "@name": "format",
+					        "@description": "Format",					        
+					        "@type": "string",
+					        "@required": "true",
+					        "default-value": "CSV",
+					        "enum-values": {
+					            "value": [
+					                "CSV", "XML"
+					            ]
+					        }
+					    }, {
+					    	"@name": "filename",
+					    	"@description": "Filename",
+					    	"@trim": true,
+					    	"@type": "string",
+					    	"@required": "true"
+					    }
+					]
+				},
+				"status-codes": {
+					"status": [{
+				    	"@code": "ERROR",
+				    	"description": "Used when an error occurred."
+				    }, {
+				        "@code": "OK",
+				        "description": "Used when everything went well."
+				    }, {
+				        "@code": "WARN",
+				        "description": "Used when small, but acceptable problems occurred."
+				    }, {
+				        "@code": "SUSPEND",
+				        "description": "Used when nothing unexpected happened but subsequent steps should be bypassed."
+				    }]
+				}
+			}
+		]
+	}
+}

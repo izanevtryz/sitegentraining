@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+
+	<field formid="email" label="newsletter.email.label" type="string" mandatory="true" regexp="^[\w.%+-]+@[\w.-]+\.[\w]{2,6}$" parse-error="newsletter.email.parse-error" binding="email" max-length="50" />
+	<field formid="firstname" label="newsletter.firstname.label" type="string" mandatory="true" binding="firstName" max-length="50" />
+	<field formid="lastname" label="newsletter.lastname.label" type="string" mandatory="true" binding="lastName" max-length="50" />
+
+	<field formid="gender" label="newsletter.gender.label" type="string" mandatory="true" binding="gender">
+		<options>
+			<option optionid="Other" value="other" label="newsletter.other" />
+			<option optionid="Male" value="male" label="newsletter.male" />
+			<option optionid="Female" value="female" label="newsletter.female" />
+		</options>
+	</field>
+
+	<group formid="birthday">
+		<field formid="birthday[day]" label="newsletter.birthday.day.label" type="string" mandatory="true" binding="birthday_day">
+			<options>
+			</options>
+		</field>
+		<field formid="birthday[month]" label="newsletter.birthday.month.label" type="string" mandatory="true" binding="birthday_month">
+			<options>
+			</options>
+		</field>
+		<field formid="birthday[year]" label="newsletter.birthday.year.label" type="string" mandatory="true" binding="birthday_year">
+			<options>
+			</options>
+		</field>
+	</group>
+
+	<field formid="country" label="newsletter.country.label" type="string" binding="country">
+		<options>
+			<option value="bg" label="newsletter.bg" />
+			<option value="uk" label="newsletter.uk" />
+			<option value="de" label="newsletter.de" />
+			<option value="fr" label="newsletter.fr" />
+			<option value="it" label="newsletter.it" />
+		</options>
+	</field>
+
+	<action formid="send" valid-form="true" />
+</form>
